@@ -6,8 +6,8 @@
         <script src="js/app.js"></script>
     </head>
     <body>
-    <h1><a href="/post">Ghello</a></h1>
-aaaaaaaaaaa
+        <h1><a href="/post">Ghello</a></h1>
+        aaaaaaaaaaa
 
 
     </body>

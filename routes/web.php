@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,8 +21,7 @@ Route::get('/', function () {
 
 Route::get('/data', [ProductController::class, 'index'])->name('data');
 
-//Route::resource('products', [AboutController::class, 'index']) ->name('fds');
-//
-//Auth::routes();
-//
-//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Auth::routes();
+
+Route::get('/home', [HomeController::class, 'index'])->name('home');
