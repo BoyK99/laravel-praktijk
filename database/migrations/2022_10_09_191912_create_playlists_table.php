@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained();
 //            $table->foreign('id')->references('user_id')->on('users');
             $table->timestamps();
+//          Nummer, artiest,
         });
     }
 
