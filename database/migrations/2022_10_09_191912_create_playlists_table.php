@@ -14,11 +14,11 @@ return new class extends Migration
     public function up() {
         Schema::create('playlists', function (Blueprint $table) {
             $table->id();
-            $table->string('cover_image');
+            $table->string('name');
+            $table->string('cover_image')->nullable();
             $table->foreignId('user_id')->constrained();
-//            $table->foreign('id')->references('user_id')->on('users');
             $table->timestamps();
-//          Nummer, artiest,
+//          Nummer, artiest
         });
     }
 
