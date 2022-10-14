@@ -15,7 +15,7 @@ use App\Http\Controllers\PlaylistController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+//
 //Route::get('/', function () {
 //    return view('index');
 //});
@@ -28,5 +28,7 @@ Auth::routes();
 Route::resource('/', PlaylistController::class);
 
 Route::get('/create', [PlaylistController::class, 'create']);
+
+Route::get('/home', [HomeController::class, 'index']);
 
 

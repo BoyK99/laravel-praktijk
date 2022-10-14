@@ -14,7 +14,7 @@ class PlaylistController extends Controller
      */
     public function index() {
         $data = Playlist::all();
-        return view('index', ['Playlist'=>$data]);
+        return view('home', ['Playlist'=>$data]);
     }
 
     /**
@@ -23,7 +23,7 @@ class PlaylistController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create() {
-        //
+        return view('create');
     }
 
     /**
@@ -35,13 +35,11 @@ class PlaylistController extends Controller
     public function store(Request $request) {
         //validate
         $request->validate([
-            'title'=> 'required',
-            'details'=> 'required',
-            'notes'=>'required',
-            'image'=>'required'
+            'name'=> 'required',
+            'user_id'=> 'required'
         ]);
-        Pastry::create($request->all());
-        return redirect()->route('pastry.index');
+        Playlist::create($request->all());
+        return redirect()->route('playlist.index');
     }
 
     /**
@@ -60,8 +58,7 @@ class PlaylistController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
+    public function edit($id) {
         //
     }
 
@@ -72,8 +69,7 @@ class PlaylistController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
+    public function update(Request $request, $id) {
         //
     }
 
@@ -83,8 +79,7 @@ class PlaylistController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
+    public function destroy($id) {
         //
     }
 }
