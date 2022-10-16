@@ -3,8 +3,9 @@
 @section('content')
     <div class="row justify-content-center">
         <div class="col-md-8">
+            <h1>Create new playlist</h1>
             <div class="card">
-                <form action="{{'playlists.store'}}" method="post">
+                <form action="{{'index.store'}}" method="post">
                     @csrf
                     <div class="card-body">
                         <label for="name" class="form-label">Playlist naam:</label>

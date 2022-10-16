@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->text('content')->nullable(false);
             $table->timestamps();
+            $table->timestamp('published_at')->nullable();
             $table->foreignId('user_id')->constrained();
             $table->foreignId('playlist_id')->constrained();
 //            $table->foreign('user_id')->references('id')->on('users');

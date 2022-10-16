@@ -10,7 +10,7 @@ class PlaylistController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function index() {
         $data = Playlist::all();
@@ -20,17 +20,17 @@ class PlaylistController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function create() {
-        return view('create');
+        return view('index.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request) {
         //validate
@@ -39,7 +39,7 @@ class PlaylistController extends Controller
             'user_id'=> 'required'
         ]);
         Playlist::create($request->all());
-        return redirect()->route('playlist.index');
+        return redirect()->route('playlists.index');
     }
 
     /**
@@ -79,7 +79,8 @@ class PlaylistController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id) {
-        //
+    public function destroy(Playlist $datas) {
+        $datas->delete();
+        return redirect('overview')->with('message','verwijderd');
     }
 }
