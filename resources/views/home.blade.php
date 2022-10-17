@@ -16,18 +16,18 @@
 
 {{--                    {{ __('You are logged in!') }}--}}
 
-                        <a href="{{route('create')}}">Create playlist</a>
+                        <a href="{{route('playlist.create')}}">Create playlist</a>
 
-{{--                        <div>--}}
-{{--                            @foreach($datas as $data)--}}
-{{--                                <tr>--}}
-{{--                                    <td>{{$data->name}}</td>--}}
-{{--                                    <td>{{$data->description}}</td>--}}
-{{--                                    <td class="col-sm-3"> <img class="img-fluid" src="{{$data->image}}"></td>--}}
-{{--                                </tr>--}}
-{{--                            @endforeach--}}
-{{--                        </div>--}}
-{{--                </div>--}}
+                        <div>
+                            @foreach($playlists as $playlist)
+                                <tr>
+                                    <td>{{$playlist->name}}</td>
+                                    <td>{{$playlist->description}}</td>
+{{--                                    <td class="col-sm-3"> <img class="img-fluid" src="{{$playlist->image}}"></td>--}}
+                                </tr>
+                            @endforeach
+                        </div>
+                </div>
             </div>
         </div>
     </div>

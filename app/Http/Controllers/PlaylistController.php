@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Playlist;
+use App\Models\User;
+use Auth;
 use Illuminate\Http\Request;
 
 class PlaylistController extends Controller
@@ -14,7 +16,7 @@ class PlaylistController extends Controller
      */
     public function index() {
         $data = Playlist::all();
-        return view('home', ['Playlist'=>$data]);
+        return view('home', ['playlists'=>$data]);
     }
 
     /**
@@ -23,7 +25,7 @@ class PlaylistController extends Controller
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function create() {
-        return view('index.create');
+        return view('create');
     }
 
     /**
@@ -32,14 +34,18 @@ class PlaylistController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\RedirectResponse
      */
+
+
     public function store(Request $request) {
         //validate
         $request->validate([
             'name'=> 'required',
-            'user_id'=> 'required'
+            'user_id' => 'required',
+            'description'=> 'nullable'
+//          'cover_image'=>'nullable'
         ]);
         Playlist::create($request->all());
-        return redirect()->route('playlists.index');
+        return redirect()->route('playlist.index');
     }
 
     /**
@@ -56,10 +62,17 @@ class PlaylistController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function edit($id) {
-        //
+    public function edit(Playlist $playlists)
+    {
+        if ($playlists->user_id === Auth::id()) {
+            return view('editview');
+
+        } else {
+            return redirect(route('playlist.index'));
+        }
+
     }
 
     /**
@@ -77,7 +90,7 @@ class PlaylistController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function destroy(Playlist $datas) {
         $datas->delete();

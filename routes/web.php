@@ -1,8 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-//use App\Http\Controllers\ProductController;
-//use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PlaylistController;
 use App\Http\Controllers\OverviewController;
 
@@ -16,15 +14,20 @@ use App\Http\Controllers\OverviewController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+// / -> index function
+Route::get('/', [PlaylistController::class, 'index']);
+// index -> index
+Route::get('/index', [PlaylistController::class, 'index']);
+// home -> index
+Route::get('/home', [PlaylistController::class, 'index']);
 
-// Mainpage with overview playlist when not logged in
-Route::resource('/', PlaylistController::class);
+// Resource -playlist- call
+Route::resource('/playlist', PlaylistController::class);
 
 // Overview page for admin (all playlists)
-Route::resource( '/overview', OverviewController::class);
+//Route::resource( '/overview', OverviewController::class);
 
-// Goes to login page
-//Route::get('/home', [HomeController::class, 'index']);
+
 
 Auth::routes();
 
@@ -32,6 +35,10 @@ Auth::routes();
 
 
 
+
+
+// Goes to login page
+//Route::get('/home', [HomeController::class, 'index']);
 
 //Route::get('/', function () {
 //    return view('index');
