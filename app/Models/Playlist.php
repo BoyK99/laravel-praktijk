@@ -11,6 +11,7 @@ class Playlist extends Model {
     protected $fillable  = [
         'name',
         'user_id',
+        'category_id',
         'description'
 //        'cover_image'
 

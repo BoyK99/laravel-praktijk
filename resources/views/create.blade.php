@@ -10,12 +10,12 @@
                     <div class="card-body">
                         <label for="name" class="form-label">Playlist naam:</label>
                         <input id="name"
-                        type="text"
-                        name="name"
-                        class="@error('name') is-invalid @enderror form-control"
-                        value="{{ old('name') }}" />
+                               type="text"
+                               name="name"
+                               class="@error('name') is-invalid @enderror form-control"
+                               value="{{ old('name') }}"/>
                         @error('')
-                            <span class="">{{ $message }}</span>
+                        <span class="">{{ $message }}</span>
                         @enderror
                     </div>
 
@@ -25,12 +25,23 @@
                                type="text"
                                name="description"
                                class="@error('description') is-invalid @enderror form-control"
-                               value="{{ old('description') }}" />
+                               value="{{ old('description') }}"/>
                         @error('')
-                            <span class="">{{ $message }}</span>
+                        <span class="">{{ $message }}</span>
                         @enderror
                     </div>
-                    <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+                    <div class="card-body">
+                        <label for="category_id" class="form-label">Pick a category:</label>
+                        <select id="category_id"
+                                name="category_id"
+                                class="@error('category_id') is-invalid @enderror form-select">
+                            <option @if(old('category_id') == '')selected @endif disabled hidden style='display: none'
+                                    value=''></option>
+                            @foreach($categories as $category)
+                                <option value="{{$category->id}}" class="dropdown-item">{{$category->name}}</option>
+                            @endforeach
+                        </select>
+                    </div>
                     <div class="card-body">
                         <input type="submit" name="value" class="btn btn-primary">
                     </div>

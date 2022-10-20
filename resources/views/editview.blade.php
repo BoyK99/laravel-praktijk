@@ -3,8 +3,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6 col-md-offset-3" style="margin-top:20px">
-                <h2 class="text-center">{{$headTitle}}</h2>
-                <form action="{{route('index.update', $playlists->id )}}" method="post">
+                <form action="{{route('playlist.update', $playlists->id )}}" method="post">
                     @method('put')
 
                     @csrf
@@ -24,6 +23,17 @@
                         <span style="color:red">@error('description'){{ $message }} @enderror</span>
                     </div>
 
+                    <div class="card-body">
+                        <label for="category_id" class="form-label">Pick a category:</label>
+                        <select id="category_id"
+                                name="category_id"
+                                class="@error('category_id') is-invalid @enderror form-select">
+                            @foreach($categories as $category)
+                                <option value="{{$category->id}}" class="dropdown-item">{{$category->name}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
                     <div class="form-group" style="margin-top:20px">
                         <label for="">Image</label>
                         <input type="file" class="form-control" name="image"
@@ -31,19 +41,8 @@
                                accept=".jpg,.jpeg,.png" value="{{$playlists->cover_image}}">
                         <span style="color:red">@error('image'){{ $message }} @enderror</span>
                     </div>
-
-                    @foreach($tags as $tag)
-                        <div class="form-check form-switch" style="margin-top: 5px;">
-                            <input name="tags[]" class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" value="{{$tag->id}}"
-                                   @if(old('tags') && in_array($tag->id, old('tags'))) checked="checked"  @endif>
-                            <label class="form-check-label" for="flexSwitchCheckDefault">{{$tag->name}}</label>
-                        </div>
-                    @endforeach
-                    <span style="color:red">@error('tags'){{ $message }} @enderror</span>
-
                     <div class="form-group" style="margin-top:20px">
                         <button type="submit" class="btn btn-primary btn-block">Save</button>
-                        <a href="{{route('starwars-part.index')}}" class="btn btn-primary btn-block" style="margin-left: 20px">Back</a>
                     </div>
                 </form>
             </div>
