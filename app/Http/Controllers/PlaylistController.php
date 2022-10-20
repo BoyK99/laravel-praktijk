@@ -6,6 +6,7 @@ use App\Models\Playlist;
 use App\Models\User;
 use Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PlaylistController extends Controller
 {
@@ -55,7 +56,7 @@ class PlaylistController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id) {
-        //
+
     }
 
     /**
@@ -74,6 +75,23 @@ class PlaylistController extends Controller
         }
 
     }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function search(Request $request)
+    {
+        $pastries = Playlist::where('name', 'like', '%' . $request->other . '%')
+            ->orWhere('description', 'like', '%' . $request->other . '%')
+            ->get();
+        $pastryCategories = Category::all();
+        return view('pastries', compact('pastries'), ['categories' => $pastryCategories]);
+    }
+
 
     /**
      * Update the specified resource in storage.
