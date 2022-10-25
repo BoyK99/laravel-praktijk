@@ -30,6 +30,7 @@
                         <span class="">{{ $message }}</span>
                         @enderror
                     </div>
+
                     <div class="card-body">
                         <label for="category_id" class="form-label">Pick a category:</label>
                         <select id="category_id"
@@ -42,6 +43,15 @@
                             @endforeach
                         </select>
                     </div>
+
+                    <div class="card-body">
+                        <label for="">Image</label>
+                        <input type="file" class="form-control" name="image"
+                               placeholder=""
+                               accept=".jpg,.jpeg,.png" value="{{$playlists->cover_image}}">
+                        <span style="color:red">@error('image'){{ $message }} @enderror</span>
+                    </div>
+
                     <div class="card-body">
                         <input type="submit" name="value" class="btn btn-primary">
                     </div>

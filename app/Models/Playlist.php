@@ -16,5 +16,4 @@ class Playlist extends Model {
 //        'cover_image'
 
     ];
-
 }

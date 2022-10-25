@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('cover_image')->nullable();
             $table->string('description')->nullable();;
             $table->foreignId('user_id')->constrained();
-            $table->foreignId('category_id')->constrained();
+            $table->foreignId('category_id')->nullable()->constrained()->cascadeOnDelete();
             $table->timestamps();
 //          Nummer, artiest
         });

@@ -1,26 +1,36 @@
 @extends('layouts/app')
+
 @section('content')
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6 col-md-offset-3" style="margin-top:20px">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <h1>Edit playlist details</h1>
+            <div class="card">
                 <form action="{{route('playlist.update', $playlists->id )}}" method="post">
                     @method('put')
 
                     @csrf
-                    <div class="form-group" style="margin-top:20px">
-                        <label for="">Name</label>
-                        <input type="text" class="form-control" name="name"
-                               placeholder="Change playlist name"
-                               value="{{$playlists->name}}">
-                        <span style="color:red">@error('title'){{ $message }} @enderror</span>
+                    <div class="card-body">
+                        <label for="name" class="form-label">Playlist naam:</label>
+                        <input id="name"
+                               type="text"
+                               name="name"
+                               class="@error('name') is-invalid @enderror form-control"
+                               value="{{$playlists->name}}"/>
+                        @error('')
+                        <span class="">{{ $message }}</span>
+                        @enderror
                     </div>
 
-                    <div class="form-group" style="margin-top:20px">
-                        <label for="">Description</label>
-                        <input class="form-control form-control-lg" type="text" class="form-control"
+                    <div class="card-body">
+                        <label for="description" class="form-label">Description:</label>
+                        <input id="description"
+                               type="text"
                                name="description"
-                               placeholder="Change playlist description" value="{{$playlists->description}}">
-                        <span style="color:red">@error('description'){{ $message }} @enderror</span>
+                               class="@error('description') is-invalid @enderror form-control"
+                               value="{{$playlists->description}}"/>
+                        @error('')
+                        <span class="">{{ $message }}</span>
+                        @enderror
                     </div>
 
                     <div class="card-body">
@@ -34,14 +44,14 @@
                         </select>
                     </div>
 
-                    <div class="form-group" style="margin-top:20px">
+                    <div class="card-body">
                         <label for="">Image</label>
                         <input type="file" class="form-control" name="image"
                                placeholder=""
                                accept=".jpg,.jpeg,.png" value="{{$playlists->cover_image}}">
                         <span style="color:red">@error('image'){{ $message }} @enderror</span>
                     </div>
-                    <div class="form-group" style="margin-top:20px">
+                    <div class="card-body">
                         <button type="submit" class="btn btn-primary btn-block">Save</button>
                     </div>
                 </form>
@@ -49,3 +59,4 @@
 
         </div>
     </div>
+@endsection

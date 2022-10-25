@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PlaylistController;
-use App\Http\Controllers\OverviewController;
+use App\Http\Controllers\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,7 +21,7 @@ Route::get('/index', [PlaylistController::class, 'index']);
 // home -> index
 Route::get('/home', [PlaylistController::class, 'index']);
 // all playlists when admin
-Route::get('/overview', [PlaylistController::class, 'overview']);
+Route::get('/overview', [AdminController::class, 'index']);
 
 // Resource -playlist- call
 Route::resource('/playlist', PlaylistController::class);

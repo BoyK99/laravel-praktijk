@@ -8,8 +8,7 @@ use App\Models\User;
 use Auth;
 use Illuminate\Http\Request;
 
-class PlaylistController extends Controller
-{
+class PlaylistController extends Controller {
     /**
      * Display a listing of the resource.
      *
@@ -54,7 +53,7 @@ class PlaylistController extends Controller
         //validate
         $request->validate([
             'name'=> 'required',
-            'category_id'=>'required',
+            'category_id'=>'nullable',
             'description'=> 'nullable'
 //            'cover_image'=>'required'
         ]);
@@ -142,6 +141,6 @@ class PlaylistController extends Controller
      */
     public function destroy(Playlist $datas) {
         $datas->delete();
-        return redirect('overview')->with('message','verwijderd');
+        return redirect('overview.overview')->with('message','verwijderd');
     }
 }

@@ -14,6 +14,7 @@
                 </tr>
                 @foreach($playlists as $playlist)
                     <tr>
+
                         <td>{{$playlist->name}}</td>
                         <td>{{$playlist->description}}</td>
                         <td>{{$playlist->cover_image}}</td>
