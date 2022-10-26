@@ -20,20 +20,18 @@ Route::get('/', [PlaylistController::class, 'index']);
 Route::get('/index', [PlaylistController::class, 'index']);
 // home -> index
 Route::get('/home', [PlaylistController::class, 'index']);
-// all playlists when admin
-Route::get('/overview', [AdminController::class, 'index']);
-
 // Resource -playlist- call
 Route::resource('/playlist', PlaylistController::class);
 
 
 
 // Overview page for admin (all playlists)
-//Route::resource( '/overview', OverviewController::class);
+//Route::resource( '/playlist', OverviewController::class);
 
-//Route::middleware(['auth'])->group(function () {
-//
-//};
+Route::middleware(['auth'])->group(function () {
+    // all playlists when admin
+    Route::get('/admin', [AdminController::class, 'index']);
+});
 
 
 

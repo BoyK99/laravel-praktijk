@@ -12,6 +12,6 @@ class OverviewController extends Controller {
      */
     public function index() {
         $playlist = Playlist::all();
-        return view('overview', ['Playlist'=>$playlist]);
+        return view('playlist', ['Playlist'=>$playlist]);
     }
 }

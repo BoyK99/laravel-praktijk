@@ -26,9 +26,9 @@ class PlaylistController extends Controller {
 //        return view('home', ['playlists'=>$data]);
     }
 
-//    public function overview(Request $request) {
+//    public function playlist(Request $request) {
 //        $playlists = Playlist::all();
-//        Return view('overview.overview', ['playlists' => $playlists]);
+//        Return view('playlist.playlist', ['playlists' => $playlists]);
 //    }
 
     /**
@@ -74,7 +74,7 @@ class PlaylistController extends Controller {
      */
     public function show($id) {
         $playlists = $id;
-        return view('overview.detail', ['playlists' => Playlist::find($id)]);
+        return view('playlist.detail', ['playlists' => Playlist::find($id)]);
     }
 
     /**
@@ -91,7 +91,7 @@ class PlaylistController extends Controller {
 //        }
 
         $category = Category::all();
-        return view('editview', ['playlists' => Playlist::find($id), 'categories' => $category]);
+        return view('playlist.editview', ['playlists' => Playlist::find($id), 'categories' => $category]);
 
     }
 
@@ -141,6 +141,6 @@ class PlaylistController extends Controller {
      */
     public function destroy(Playlist $datas) {
         $datas->delete();
-        return redirect('overview.overview')->with('message','verwijderd');
+        return redirect('playlist.playlist')->with('message','verwijderd');
     }
 }

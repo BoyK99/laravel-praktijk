@@ -14,7 +14,7 @@ class AdminController extends Controller
      */
     public function index() {
         $playlists = Playlist::all();
-        return view('overview.overview', ['playlists'=>$playlists]);
+        return view('playlist.overview', ['playlists'=>$playlists]);
     }
     /**
      * Show the form for creating a new resource.

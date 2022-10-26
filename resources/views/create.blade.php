@@ -48,7 +48,7 @@
                         <label for="">Image</label>
                         <input type="file" class="form-control" name="image"
                                placeholder=""
-                               accept=".jpg,.jpeg,.png" value="{{$playlists->cover_image}}">
+                               accept=".jpg,.jpeg,.png" value="">
                         <span style="color:red">@error('image'){{ $message }} @enderror</span>
                     </div>
 

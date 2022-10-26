@@ -3,16 +3,18 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Comment;
 
 class CommentController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function index() {
-        //
+//        $comments = Comment::all();
+//        return view('playlist.detail', ['Comments'=>$comments]);
     }
 
     /**
@@ -28,10 +30,22 @@ class CommentController extends Controller
      * Store a newly created resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request) {
-        //
+        //validate
+        $request->validate([
+            'content' => 'required',
+            'playlist_id' => 'nullable',
+            'user_id' =>
+
+        ]);
+        $playlist = new Comment();
+        $playlist->name = $request->input('content');
+        $playlist->playlist_id = $request->input('playlist_id');
+        $playlist->user_id = Auth::user()->id;
+        $playlist->save();
+        return redirect()->route('Comment.index');
     }
 
     /**

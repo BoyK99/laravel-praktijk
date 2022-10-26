@@ -1,24 +1,26 @@
 @extends('layouts.app')
 
 @section('content')
-    <div>
-        <a href="{{route('playlist.create')}}">Create playlist</a>
-    </div>
     <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-10">
-                @foreach($playlists as $playlist)
-                    <div class="card" style="width: 18rem;">
-                        <img class="card-img-top" src="{{$playlist->cover_image}}" alt="{{$playlist->cover_image}}">
+        @auth
+        <div>
+            <a href="{{route('playlist.create')}}">Create playlist</a>
+        </div>
+        @endauth
+        <div class="row row-cols-1 row-cols-md-3 g-3">
+            @foreach($playlists as $playlist)
+                <div class="col mb-3">
+                    <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">{{$playlist->name}}</h5>
+                            <h4 class="card-title">{{$playlist->name}}</h4>
+{{--                            <img class="card-img-top" src="{{$playlist->cover_image}}" alt="{{$playlist->cover_image}}">--}}
+                            <img width="100%" height="100%" src="storage/placeholder.png">
                             <p class="card-text">{{$playlist->description}}</p>
                             <a href="{{route('playlist.show', $playlist->id)}}" class="btn btn-primary">View playlist</a>
                         </div>
                     </div>
-                @endforeach
-
-            </div>
+                </div>
+            @endforeach
         </div>
     </div>
 @endsection
