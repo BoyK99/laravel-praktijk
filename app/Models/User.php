@@ -11,6 +11,13 @@ use Laravel\Sanctum\HasApiTokens;
 class User extends Authenticatable {
     use HasApiTokens, HasFactory, Notifiable;
 
+    public function isVerified(){
+        return $this->is_verified == 1;
+    }
+
+    public function isAdmin(){
+        return $this->is_admin == 1;
+    }
     /**
      * The attributes that are mass assignable.
      *

@@ -13,12 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('comments', function (Blueprint $table) {
-            $table->id();
-            $table->text('content')->nullable(false);
-            $table->timestamps();
-            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('playlist_id')->constrained()->cascadeOnDelete();
+        Schema::table('users', function (Blueprint $table) {
+            $table->integer('is_admin')->default('0');
         });
     }
 
@@ -29,6 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('comments');
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropColumn('is_admin');
+        });
     }
 };

@@ -5,7 +5,7 @@
         <div class="col-md-8">
             <h1>Create new playlist</h1>
             <div class="card">
-                <form action="{{route('playlist.store')}}" method="post">
+                <form action="{{route('playlist.store')}}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="card-body">
                         <label for="name" class="form-label">Playlist naam:</label>
@@ -46,10 +46,15 @@
 
                     <div class="card-body">
                         <label for="">Image</label>
-                        <input type="file" class="form-control" name="image"
-                               placeholder=""
-                               accept=".jpg,.jpeg,.png" value="">
-                        <span style="color:red">@error('image'){{ $message }} @enderror</span>
+                        <input id="image"
+                               type="file"
+                               name="image"
+                               accept=".jpg,.jpeg,.png"
+                               class="@error('image') is-invalid @enderror form-control"
+                               value="{{ old('image') }}"/>
+                        @error('image')
+                            <span class="">{{ $message }}</span>
+                        @enderror
                     </div>
 
                     <div class="card-body">

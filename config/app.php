@@ -15,7 +15,8 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Epic playlist webbie'),
+//    'name' => env('APP_NAME', 'Epic playlist webbie'),
+    'name' => 'Playlist site',
 
     /*
     |--------------------------------------------------------------------------

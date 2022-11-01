@@ -10,11 +10,12 @@ return new class extends Migration {
      *
      * @return void
      */
-    public function up(){
+    public function up()
+    {
         Schema::create('categories', function (Blueprint $table) {
-        $table->id();
-        $table->text('name');
-        $table->timestamps();
+            $table->id();
+            $table->text('name');
+            $table->timestamps();
         });
     }
 
@@ -23,7 +24,8 @@ return new class extends Migration {
      *
      * @return void
      */
-    public function down() {
+    public function down()
+    {
 
     }
 };
